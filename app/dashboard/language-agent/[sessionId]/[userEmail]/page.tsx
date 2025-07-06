@@ -28,6 +28,7 @@ type messages = {
 const LanguageVoiceAgent = () => {
     const {sessionId} = useParams()
     const {user} = useAuth()
+    const [ border,setBorder] = useState<boolean>(false)
     const [callDuration, setCallDuration] = useState(0);
     const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | null>(null);
     const [finalCallDuration] = useState<number | null>(null);
@@ -56,10 +57,11 @@ const LanguageVoiceAgent = () => {
         if (!user ) {
             return
         }
-
+        setLoading(true)
         const result = await axios.get(`/api/session-chat?sessionId=${sessionId}&userEmail=${user?.email}`)
         console.log(result.data)
         setSessionDetail(result.data)
+        setLoading(false)
     }
     console.log(sessionDetail)
 
@@ -106,8 +108,7 @@ Here are the questions to ask:
 3. Do you enjoy this language’s culture, music, or movies?
 4. How do you prefer to learn? (e.g. watching videos, listening to audio, doing exercises, reading)
 5. What is your current level in this language?
-6. How many days per week would you like to study?
-7. Would you like to receive reminders or progress tracking?
+6. Would you like to receive reminders or progress tracking?
 
  Once all the questions are answered, tell the user:
 "Thank you! I have everything I need. For  your study plan to begin beeing generated  just disconnect the call!. Hang tight! "
@@ -157,10 +158,12 @@ Do not try to teach or explain anything. Just collect answers.
 
             vapi.on('speech-start', () => {
                 console.log('Assistant started speaking')
+                setBorder(true)
                 setCurrentRole('assistant')
             })
             vapi.on('speech-end', () => {
                 console.log('Assistant finished speaking')
+                setBorder(false)
                 setCurrentRole('user')
             })
             vapi.on('error', (error) => {
@@ -227,6 +230,7 @@ Do not try to teach or explain anything. Just collect answers.
     }
 
 
+
     return (
         <div className='p-5 border rounded-xl bg-secondary'>
             <div className='flex justify-between items-center
@@ -242,7 +246,7 @@ Do not try to teach or explain anything. Just collect answers.
                 </h2>
             </div>
             {sessionDetail && <div className='flex items-center flex-col mt-10'>
-                <Image width={120} height={120} className='w-[120px] h-[120px] object-cover rounded-full'
+                <Image width={120} height={120} className={`w-[120px] h-[120px] object-cover rounded-full ${border &&  'border border-green-500 transition-border border-[4px]'}`}
                      src={LogoImage} alt='LOGO'/>
 
                 <h2 className='mt-2 text-lg'></h2>
@@ -254,7 +258,7 @@ Do not try to teach or explain anything. Just collect answers.
                             <h2 className='text-gray-400 text-left'>{msg.role} : {msg.text}</h2>
                         </div>
                     ))}
-                    <h2 className='text-gray-400'>Assistant msg</h2>
+                    <h2 className='text-gray-400'>Lingvify Agent</h2>
                     {liveTranscript && liveTranscript?.length > 0 &&
                         <h2 className='text-lg text-left'>{currentRole} : {liveTranscript}</h2>}
 

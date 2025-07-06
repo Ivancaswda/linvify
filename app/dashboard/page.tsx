@@ -78,7 +78,7 @@ const Page = () => {
             /> */}
 
 
-                <Button onClick={onStartConsultation}> {isLoading ? <Loader2Icon className="animate-spin" /> : 'Начать линго-консультацию'}</Button>
+                <Button onClick={onStartConsultation}>Начать линго-консультацию</Button>
 
                 <HistoryList/>
 
