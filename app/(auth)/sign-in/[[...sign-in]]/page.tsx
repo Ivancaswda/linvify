@@ -53,7 +53,7 @@ function SignIn() {
         if (user) {
             router.replace("/dashboard");
         }
-    }, [user]);
+    }, [user, router]);
     return (
         <div className='flex items-center flex-col md:flex-row-reverse   justify-center gap-14'>
             <div

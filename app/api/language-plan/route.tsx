@@ -3,12 +3,12 @@ import { openai } from "@/config/OpenAiModel";
 import {SessionChatTable} from "@/config/schema";
 import db from "@/config/db";
 import {eq} from "drizzle-orm";
-
+type Message = { role: string; text: string };
 export async function POST(req: NextRequest) {
     try {
-        const { messages, sessionDetail, duration, sessionId } = await req.json();
+        const { messages, duration, sessionId } = await req.json();
 
-        const transcriptText = messages.map((msg: any) => `${msg.role}: ${msg.text}`).join('\n');
+        const transcriptText = messages.map((msg: Message) => `${msg.role}: ${msg.text}`).join('\n');
 
         const prompt = `
 На основе следующего диалога между пользователем и AI:
@@ -53,7 +53,7 @@ ${transcriptText}
         let JSONResp;
         try {
             JSONResp = JSON.parse(jsonMatch[0]);
-        } catch (err) {
+        } catch  {
             console.error('❌ Ошибка парсинга JSON:', jsonMatch[0]);
             throw new Error("Невалидный JSON от OpenAI");
         }

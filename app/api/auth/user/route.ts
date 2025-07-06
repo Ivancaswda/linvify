@@ -34,7 +34,7 @@ export async function GET(req: Request) {
                 credits: user.credits ?? 0,
             },
         })
-    } catch (err: any) {
+    } catch  {
         return new Response("Invalid token", { status: 401 })
     }
 }

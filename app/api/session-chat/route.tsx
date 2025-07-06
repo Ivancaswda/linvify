@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
             pickedFlag: pickedFlag,
             statedLevel: statedLevel,
             selectedLanguage: selectedLanguage
-            // @ts-ignore
+            // @ts-expect-error
         }).returning({SessionChatTable})
         return NextResponse.json(result[0]?.SessionChatTable)
     } catch (error) {
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     }
 }
 
-export async function GET(req:NextRequest, res: NextResponse) {
+export async function GET(req:NextRequest) {
 
     const {searchParams} = new URL(req.url)
 

@@ -34,8 +34,13 @@ export async function POST(req: Request) {
         const token = generateToken({ email, userName });
 
         return Response.json({ message: "Registered", token });
-    } catch (err: any) {
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            console.error("🚨 Registration error:", err.message);
+            return Response.json({ error: "Internal Server Error", details: err.message }, { status: 500 });
+        }
+
         console.error("🚨 Registration error:", err);
-        return Response.json({ error: "Internal Server Error", details: err.message }, { status: 500 });
+        return Response.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

@@ -53,9 +53,17 @@ function Signup() {
             router.replace('/dashboard')
             toast.success('Вы успешно зарегистрировались в аккаунт')
 
-        } catch (error: any) {
-            console.error("Ошибка при регистрации:", error.response?.data || error.message)
-            toast.error("Ошибка при регистрации. Проверьте данные.")
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                console.error("Ошибка при регистрации:", error.response?.data || error.message);
+                toast.error(error.response?.data?.message || "Ошибка при регистрации. Проверьте данные.");
+            } else if (error instanceof Error) {
+                console.error("Unexpected error:", error.message);
+                toast.error("Непредвиденная ошибка.");
+            } else {
+                console.error("Unknown error:", error);
+                toast.error("Неизвестная ошибка при регистрации.");
+            }
         } finally {
             setIsLoading(false)
         }

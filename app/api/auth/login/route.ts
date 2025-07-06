@@ -41,8 +41,13 @@ export async function POST(req: Request) {
                 credits: user.credits ?? 0,
             },
         })
-    } catch (err: any) {
-        console.error("🚨 Login error:", err)
-        return Response.json({ error: "Internal Server Error", details: err.message }, { status: 500 })
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            console.error("🚨 Login error:", err.message);
+            return Response.json({ error: "Internal Server Error", details: err.message }, { status: 500 });
+        }
+
+        console.error("🚨 Login error:", err);
+        return Response.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

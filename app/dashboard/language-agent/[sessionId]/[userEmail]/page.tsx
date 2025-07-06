@@ -30,17 +30,17 @@ const LanguageVoiceAgent = () => {
     const {user} = useAuth()
     const [callDuration, setCallDuration] = useState(0);
     const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | null>(null);
-    const [finalCallDuration, setFinalCallDuration] = useState<number | null>(null);
+    const [finalCallDuration] = useState<number | null>(null);
     const [loading, setLoading] = useState<boolean>()
-    const [sessionDetail, setSessionDetail] = useState()
+    const [sessionDetail, setSessionDetail] = useState<props | null>()
     const [callStarted, setCallStarted] = useState<boolean>(false)
-    const [vapiInstance, setVapiInstance] = useState<any>()
+    const [vapiInstance, setVapiInstance] = useState()
     const [currentRole, setCurrentRole] = useState<string | null>('')
     const [messages, setMessages] = useState<messages[]>([])
     const [liveTranscript, setLiveTranscript] = useState<string>()
     const router = useRouter()
 // Start voice conversation
-
+     
     useEffect(() => {
         if (sessionId) {
             getSessionDetails()
@@ -120,7 +120,7 @@ Do not try to teach or explain anything. Just collect answers.
             };
 
             console.log("Starting Vapi call with config:", VapiAgentConfig);
-            //@ts-ignore
+            // @ts-expect-error Vapi types don't match expected config shape
             await vapi.start(VapiAgentConfig);
 
 
@@ -173,15 +173,7 @@ Do not try to teach or explain anything. Just collect answers.
             setLoading(false)
         }
     }
-    const handleCallStart = () => {
-        setCallStarted(true)
-        console.log('call has started')
-    }
 
-    const handleCallEnd = () => {
-        setCallStarted(false)
-        console.log('call has ended')
-    }
     const endCall = async () => {
         setLoading(true)
         try {

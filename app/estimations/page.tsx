@@ -21,7 +21,7 @@ const Page = () => {
         if (user) {
             getHistoryList()
         }
-    }, [user])
+    }, [user, getHistoryList])
 
     const router = useRouter()
     console.log(user)
@@ -41,19 +41,14 @@ const Page = () => {
     }
 
 
-    const getHistoryList = async () => {
+    const getHistoryList = useCallback(async () => {
+        if (!user) return;
 
-        if (!user) {
-            return
-        }
-        setIsLoading(true)
-
-        const result = await axios.get(`/api/session-chat?sessionId=all&userEmail=${user?.email}`)
-        console.log(result.data + 'history data!')
-
-        setHistoryList(result.data)
-        setIsLoading(false)
-    }
+        setIsLoading(true);
+        const result = await axios.get(`/api/session-chat?sessionId=all&userEmail=${user?.email}`);
+        setHistoryList(result.data);
+        setIsLoading(false);
+    }, [user]);
     console.log(historyList)
 
     const practiceList = historyList.filter((item) =>  item.statedLevel !== null)
