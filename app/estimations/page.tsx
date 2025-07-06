@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import {props} from "@/app/dashboard/language-agent/[sessionId]/[userEmail]/page";
 import {useAuth} from "@/context/useAuth";
 import axios from "axios";
@@ -21,7 +21,7 @@ const Page = () => {
         if (user) {
             getHistoryList()
         }
-    }, [user, getHistoryList])
+    }, [user])
 
     const router = useRouter()
     console.log(user)
@@ -41,14 +41,14 @@ const Page = () => {
     }
 
 
-    const getHistoryList = useCallback(async () => {
+    const getHistoryList = async () => {
         if (!user) return;
 
         setIsLoading(true);
         const result = await axios.get(`/api/session-chat?sessionId=all&userEmail=${user?.email}`);
         setHistoryList(result.data);
         setIsLoading(false);
-    }, [user]);
+    };
     console.log(historyList)
 
     const practiceList = historyList.filter((item) =>  item.statedLevel !== null)

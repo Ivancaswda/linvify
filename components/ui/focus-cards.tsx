@@ -9,17 +9,17 @@ import {Loader2Icon} from "lucide-react";
 
 export const Card = React.memo(
     ({
-       card,
-       index,
-       hovered,
-       setHovered,
-       onClick,
+         card,
+         index,
+         hovered,
+         setHovered,
+         onClick,
      }: {
-      card: any;
-      index: number;
-      hovered: number | null;
-      setHovered: React.Dispatch<React.SetStateAction<number | null>>;
-      onClick: () => void;
+        card: CardType;
+        index: number;
+        hovered: number | null;
+        setHovered: React.Dispatch<React.SetStateAction<number | null>>;
+        onClick: () => void;
     }) => {
 
         return (

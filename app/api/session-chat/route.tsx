@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
             pickedFlag: pickedFlag,
             statedLevel: statedLevel,
             selectedLanguage: selectedLanguage
-            // @ts-expect-error
+            // @ts-expect-error Vapi types don't match expected config shape
         }).returning({SessionChatTable})
         return NextResponse.json(result[0]?.SessionChatTable)
     } catch (error) {

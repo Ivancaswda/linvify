@@ -3,8 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useMotionTemplate, useMotionValue, motion } from "motion/react";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -14,12 +13,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    function handleMouseMove({ currentTarget, clientX, clientY }: any) {
-      const { left, top } = currentTarget.getBoundingClientRect();
-
-      mouseX.set(clientX - left);
-      mouseY.set(clientY - top);
-    }
+      function handleMouseMove(
+          e: React.MouseEvent<HTMLDivElement, MouseEvent>
+      ) {
+          const { left, top } = e.currentTarget.getBoundingClientRect();
+          const { clientX, clientY } = e;
+          mouseX.set(clientX - left);
+          mouseY.set(clientY - top);
+      }
     return (
       <motion.div
         style={{

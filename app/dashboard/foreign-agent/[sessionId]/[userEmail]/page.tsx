@@ -118,7 +118,7 @@ const ForeignVoiceAgent = () => {
             };
 
             console.log("Starting Vapi call with config:", VapiAgentConfig);
-            // @ts-expect-error
+            // @ts-expect-error Vapi types don't match expected config shape
             await vapi.start(VapiAgentConfig);
 
             // события
