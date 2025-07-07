@@ -32,8 +32,7 @@ const ViewPlanDialog = ({ record }: ViewPlanDialogProps) => {
          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button
-                    borderRadius="1.50rem"
-                    className="  dark:bg-orange-600 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+                    className="rounded-[1.5rem] dark:bg-orange-600 text-black dark:text-white border-neutral-200 dark:border-slate-800"
                 >
                     Посмотреть план
                 </Button>
@@ -71,7 +70,7 @@ const ViewPlanDialog = ({ record }: ViewPlanDialogProps) => {
                         </div>
                     </div>
 
-                    {/* Разговор */}
+
                     <div>
                         <h3 className="text-lg font-semibold mt-6 mb-2">История разговора</h3>
                         <ScrollArea className="max-h-64 pr-2">
