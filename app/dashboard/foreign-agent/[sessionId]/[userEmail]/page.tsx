@@ -43,7 +43,7 @@ const ForeignVoiceAgent = () => {
     const [loading, setLoading] = useState<boolean>()
     const [sessionDetail, setSessionDetail] = useState<SessionDetail | null>()
     const [callStarted, setCallStarted] = useState<boolean>(false)
-    const [vapiInstance, setVapiInstance] = useState()
+    const [vapiInstance, setVapiInstance] = useState<Vapi | null>(null)
     const [currentRole, setCurrentRole] = useState<string | null>('')
     const [messages, setMessages] = useState<messages[]>([])
     const [liveTranscript, setLiveTranscript] = useState<string>()
