@@ -16,20 +16,20 @@ export async function POST(req: NextRequest) {
         const numberOfDays = 7; // по умолчанию
 
         const prompt = `
-На основе следующего диалога между пользователем и AI:
+Based on the following conversation between the user and the AI assistant:
 
 ${transcriptText}
 
-Составь краткий, но персонализированный ежедневный план изучения языка. План должен содержать **ровно ${numberOfDays} дней**. Не включай примеры слов, фраз или грамматики. Просто укажи действия для каждого дня, например: "Прослушать аудиоурок", "Повторить лексику", "Сделать упражнение".
+Create a short but personalized daily language study plan. The plan must include **exactly ${numberOfDays} days**. Do not include examples of words, phrases, or grammar. Just list the actions for each day, such as: "Listen to an audio lesson", "Review vocabulary", "Do exercises".
 
-Ответ строго в формате JSON:
+The response must be strictly in JSON format:
 {
   "languagePlan": [
     {
       "id": 1,
       "language": "Spanish",
-      "day": "Понедельник",
-      "action": "Прослушать аудиоурок и повторить материал.",
+      "day": "Monday",
+      "action": "Listen to an audio lesson and review the material.",
       "currentLevel": "A1"
     },
     ...
@@ -41,7 +41,7 @@ ${transcriptText}
         const completion = await openai.chat.completions.create({
             model: 'deepseek/deepseek-r1-0528-qwen3-8b:free',
             messages: [
-                { role: 'system', content: 'Ты полезный помощник по изучению языков.' },
+                { role: 'system', content:  'You are a helpful language learning assistant. Always respond strictly in JSON format as specified.' },
                 { role: 'user', content: prompt }
             ]
         });
