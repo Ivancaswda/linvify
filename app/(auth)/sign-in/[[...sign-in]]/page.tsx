@@ -43,7 +43,7 @@ function SignIn() {
         if (!userRes.ok) throw new Error("Failed to fetch user");
 
         const userData = await userRes.json();
-        setUser(userData.user); // обновляем контекст
+        setUser(userData?.user); // обновляем контекст
         setIsLoading(false)
         router.replace('/dashboard')
 

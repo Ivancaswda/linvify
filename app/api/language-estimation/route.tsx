@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         })
         const rawResp = completion.choices[0].message
 
-        const Resp = rawResp.content.trim().replace('```json', '').replace('```', '')
+        const Resp = (rawResp.content ?? '').trim().replace('```json', '').replace('```', '');
         const JSONResp = JSON.parse(Resp)
 
         await db.update(SessionChatTable).set({
