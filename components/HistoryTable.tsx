@@ -41,7 +41,7 @@ const HistoryTable = ({historyList}: Props) => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {planList.map((record: props, index: number) => (
+                {planList.map((record: SessionRecord, index: number) => (
                     <TableRow key={index}>
                         <TableCell className="font-medium flex items-center gap-3">
 
