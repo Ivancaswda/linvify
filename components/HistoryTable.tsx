@@ -13,9 +13,10 @@ import moment from "moment";
 import {Loader2Icon} from "lucide-react";
 import ViewPlanDialog from "@/components/ViewPlanDialog";
 import {languageFlags} from "@/constants";
+import {SessionRecord} from "@/app/estimations/page";
 
 type Props = {
-    historyList: props[]
+    historyList: SessionRecord[]
 }
 
 const HistoryTable = ({historyList}: Props) => {
