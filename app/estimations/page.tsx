@@ -12,6 +12,18 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import {Loader2Icon, XCircleIcon} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import {useRouter} from "next/navigation";
+type LanguagePlanItem = {
+    id: string;
+    day: string;
+    currentLevel: string;
+    action: string;
+};
+type Report = {
+    advantages?: string[];
+    mistakes?: string[];
+    recommendations?: string[];
+    languagePlan?: LanguagePlanItem[];
+};
 export interface SessionRecord {
     sessionId: string;
     statedLevel: string | null;
@@ -24,11 +36,7 @@ export interface SessionRecord {
     createdBy: string;
     detectedLanguage?: string;
     notes?: string;
-    report?: {
-        advantages?: string[];
-        mistakes?: string[];
-        recommendations?: string[];
-    };
+    report?: Report;
     conversation?: {
         role: string;
         text: string;
