@@ -127,10 +127,14 @@ const ViewPlanDialog = ({ record }: ViewPlanDialogProps) => {
                                                         className='bg-orange-600 text-white font-semibold'>{user?.userName.charAt(0).toUpperCase()}</AvatarFallback>
                                                 </Avatar>
                                             </div> : <Avatar>
-                                                <AvatarImage className='object-cover'
-                                                             src={Logo_Icon}/>
-                                                <AvatarFallback
-                                                    className='bg-violet-600 text-white font-semibold'>A</AvatarFallback>
+                                                <Image
+                                                    src={Logo_Icon}
+                                                    alt="Logo"
+                                                    className="rounded-full object-cover"
+                                                    width={40}  // или нужный размер
+                                                    height={40}
+                                                />
+                                                <AvatarFallback className="bg-violet-600 text-white font-semibold">A</AvatarFallback>
                                             </Avatar>}
                                         </p>
                                         <p className="whitespace-pre-wrap dark:text-white text-black">{msg.text}</p>
