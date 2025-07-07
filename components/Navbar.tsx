@@ -15,10 +15,10 @@ import Image from "next/image";
 import Lingo from '../public/logo-lingvify.png'
 
  function Navbar() {
-     const {logout, user} = useAuth()
+     const {logout, user, loading} = useAuth()
      const router = useRouter()
 
-    const links = [
+     const links: { title: string; icon: React.ReactNode; href: string; onClick?: () => void }[] = [
         {
             title: "Home",
             icon: (
@@ -60,24 +60,22 @@ import Lingo from '../public/logo-lingvify.png'
             ),
             href: "#",
         },
-        (user && {
-            title: "SignOut",
-            icon: (
-                <ArrowRightToLineIcon className="h-full w-full text-neutral-500 dark:text-neutral-300"/>
-            ),
-            href: "#",
-            onClick: () => {
 
-                logout();
-                router.push("/sign-in");
-                toast.success('Вы успешно вышли с аккаунта!')
-
-
-            }
-        })
 
 
     ];
+     if (user && !loading) {
+         links.push({
+             title: "SignOut",
+             icon: <ArrowRightToLineIcon className="h-full w-full text-neutral-500 dark:text-neutral-300"/>,
+             href: "#",
+             onClick: () => {
+             logout();
+             router.push("/sign-in");
+             toast.success('Вы успешно вышли с аккаунта!');
+         }
+     });
+     }
      return (
          <div className='flex items-center mx-4'>
              <div className='flex items-center justify-center'>
