@@ -10,7 +10,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog"
 import {Button} from "@/components/ui/moving-border";
-import { props } from "@/app/dashboard/language-agent/[sessionId]/[userEmail]/page"
+
 import { ScrollArea } from "@/components/ui/scroll-area"
 import moment from "moment"
 
@@ -19,8 +19,9 @@ import {useAuth} from "@/context/useAuth";
 import Logo_Icon from '@/public/Login_Image.png'
 
 import Image from "next/image";
+import {SessionRecord} from "@/app/estimations/page";
 type ViewPlanDialogProps = {
-    record: props
+    record: SessionRecord
 }
 
 const ViewPlanDialog = ({ record }: ViewPlanDialogProps) => {

@@ -12,10 +12,32 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import {Loader2Icon, XCircleIcon} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import {useRouter} from "next/navigation";
-
+export interface SessionRecord {
+    sessionId: string;
+    statedLevel: string | null;
+    presentLevel?: string;
+    selectedLanguage?: {
+        language?: string;
+    };
+    pickedFlag?: string;
+    createdOn: string;
+    createdBy: string;
+    detectedLanguage?: string;
+    notes?: string;
+    report?: {
+        advantages?: string[];
+        mistakes?: string[];
+        recommendations?: string[];
+    };
+    conversation?: {
+        role: string;
+        text: string;
+    }[];
+}
 const Page = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [historyList, setHistoryList] = useState<props[]>([])
+    const [historyList, setHistoryList] = useState<SessionRecord[]>([])
+
     const {  loading, user } = useAuth()
     useEffect(() => {
         if (user) {
@@ -96,7 +118,7 @@ const Page = () => {
                                     <h1 className='text-2xl mt-6'>Тут пока ничего нет!</h1>
                                 </div>
                             </div>}
-                            {practiceList.map((record: props, index: number) => (
+                            {practiceList.map((record: SessionRecord, index: number) => (
                                 <TableRow key={index} className='flex items-center justify-between w-full'>
                                     <TableCell
                                         className="font-medium flex items-center text-center justify-center gap-3">
@@ -110,6 +132,7 @@ const Page = () => {
                                         {record?.statedLevel || "Нет указан"}
                                     </TableCell>
                                     <TableCell>{moment(new Date(record.createdOn)).fromNow()}</TableCell>
+
                                     <ViewPracticeDialog record={record}/>
                                 </TableRow>
                             ))}

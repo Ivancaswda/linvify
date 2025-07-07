@@ -16,9 +16,10 @@ import moment from "moment"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {useAuth} from "@/context/useAuth";
+import {SessionRecord} from "@/app/estimations/page";
 
 type ViewPlanDialogProps = {
-    record: props
+    record: SessionRecord
 }
 
 const ViewPlanDialog = ({ record }: ViewPlanDialogProps) => {
