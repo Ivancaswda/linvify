@@ -4,13 +4,13 @@ import React, {useEffect, useState} from 'react'
 
 import axios from "axios";
 import HistoryTable from "@/components/HistoryTable";
-import {props} from "@/app/dashboard/language-agent/[sessionId]/[userEmail]/page";
 import {useAuth} from "@/context/useAuth";
 import {Loader2Icon} from "lucide-react";
+import {SessionRecord} from "@/app/estimations/page";
 
 const HistoryList = () => {
     const [loading, setLoading] = useState<boolean>(false)
-    const [historyList, setHistoryList] = useState<props[]>([])
+    const [historyList, setHistoryList] = useState<SessionRecord[]>([])
     const {user} = useAuth()
     useEffect(() => {
         if (user) {
