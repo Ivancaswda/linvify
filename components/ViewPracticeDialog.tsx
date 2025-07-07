@@ -55,10 +55,13 @@ const ViewPlanDialog = ({ record }: ViewPlanDialogProps) => {
                     {/* Общая информация */}
                     <div className="space-y-1">
                         <p className='flex items-center gap-2'><strong>Язык:</strong>
-                            <Image width={40} height={30}  src={`https://flagcdn.com/w40/${record?.selectedLanguage?.language ||  "un"}.png`}
-                            alt={record?.selectedLanguage?.language}
-                            className="w-[40px] h-[30px] object-cover rounded-sm"
-                        />
+                            <Image
+                                width={40}
+                                height={30}
+                                src={`https://flagcdn.com/w40/${record?.selectedLanguage?.language || "un"}.png`}
+                                alt={record?.selectedLanguage?.language || "unknown language"}
+                                className="w-[40px] h-[30px] object-cover rounded-sm"
+                            />
                             {record?.pickedFlag || "Н/Д"}</p>
                         <p><strong>Уровень:</strong> {record.statedLevel}</p>
                         <p><strong>Email:</strong> {record?.createdBy}</p>
