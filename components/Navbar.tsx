@@ -84,7 +84,8 @@ import {SessionRecord} from "@/app/estimations/page";
         {
             title: "GitHub",
             icon: (
-                <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300"/>
+                <a href='https://github.com/Ivancaswda'>
+                <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300"/></a>
             ),
             href: "#",
         },
