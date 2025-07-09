@@ -249,7 +249,7 @@ const ForeignVoiceAgent = () => {
 
                 </div>
                 {!callStarted ? <Button disabled={loading} onClick={startCall} className='mt-20'> {loading ?
-                        <Loader2Icon className='animate-spin'/> : <PhoneCallIcon/>} StartCall</Button> :
+                        <Loader2Icon className='animate-spin'/> : <PhoneCallIcon/>} Начать звонок</Button> :
                     <Button disabled={loading} onClick={endCall} variant='destructive' className='mt-20'> {loading ?
                         <Loader2Icon className='animate-spin'/> : <PhoneOff/>}Disconnect</Button>}
 

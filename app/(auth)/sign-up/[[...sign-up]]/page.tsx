@@ -78,7 +78,7 @@ function Signup() {
             <div
                 className="shadow-input  w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
                 <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
-                    Добро пожаловать на<span className='text-orange-600'>Lingvify</span>
+                    Добро пожаловать на <span className='text-orange-600'>Lingvify</span>
                 </h2>
                 <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
                     Создайте  Lingvify аккаунт чтобы начать пользоваться нашей замечательной платформой!

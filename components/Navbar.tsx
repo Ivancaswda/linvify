@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import {toast} from "sonner";
 import {
@@ -13,11 +13,31 @@ import {useRouter} from "next/navigation";
 import Image from "next/image";
 
 import Lingo from '../public/logo-lingvify.png'
+import axios from "axios";
+import {SessionRecord} from "@/app/estimations/page";
 
  function Navbar() {
      const {logout, user, loading} = useAuth()
      const router = useRouter()
 
+     const [historyList, setHistoryList] = useState<SessionRecord[]>([])
+     useEffect(() => {
+         if (user) {
+             getHistoryList()
+         }
+     }, [user])
+     const getHistoryList = async () => {
+         if (!user) return;
+
+
+         const result = await axios.get(`/api/session-chat?sessionId=all&userEmail=${user?.email}`);
+         setHistoryList(result.data);
+
+     };
+     console.log(historyList)
+
+     const practiceList = historyList.filter((item) =>  item.statedLevel !== null)
+     console.log(practiceList)
      const links: { title: string; icon: React.ReactNode; href: string; onClick?: () => void }[] = [
         {
             title: "Home",
@@ -37,7 +57,15 @@ import Lingo from '../public/logo-lingvify.png'
         {
             title: "PracticeList",
             icon: (
-                <IconListDetails className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+
+                <div>
+                    {practiceList.length > 0 ? <div>
+                        <IconListDetails className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+                        <div className='w-[8px] h-[8px] absolute top-2 right-2 bg-orange-500 text-orange-500 rounded-full' />
+                    </div> : <IconListDetails className="h-full w-full text-neutral-500 dark:text-neutral-300" />}
+
+                </div>
+
             ),
             href: "/estimations",
         },

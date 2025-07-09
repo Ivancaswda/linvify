@@ -7,9 +7,10 @@ const Header = () => {
                 Лучший инструмент <br /> для изучения языка
             </h1>
             <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-                We build beautiful products with the latest technologies and frameworks.
-                We are a team of passionate developers and designers that love to build
-                amazing products.
+
+                Мы представляем с собой инструмент усиленный при помощи AI который поможет вам составить
+                недельный план изучения языка а также по практиковаться своими разговорными способностями
+                с AI.
             </p>
         </div>
     );
