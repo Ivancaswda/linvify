@@ -35,7 +35,7 @@ const LanguageVoiceAgent = () => {
     const [loading, setLoading] = useState<boolean>()
     const [sessionDetail, setSessionDetail] = useState<props | null>()
     const [callStarted, setCallStarted] = useState<boolean>(false)
-    const [vapiInstance, setVapiInstance] = useState<Vapi | null>(null)
+    const [vapiInstance, setVapiInstance] = useState<any>(null)
     const [currentRole, setCurrentRole] = useState<string | null>('')
     const [messages, setMessages] = useState<messages[]>([])
     const [liveTranscript, setLiveTranscript] = useState<string>()
@@ -92,6 +92,7 @@ const LanguageVoiceAgent = () => {
                             role: 'system',
                             content: `
 You are a friendly and professional AI language learning assistant.
+
 
  Your task is to ask the user a few thoughtful questions to create a short and personalized language study plan.
 

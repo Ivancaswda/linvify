@@ -43,7 +43,7 @@ const ForeignVoiceAgent = () => {
     const [loading, setLoading] = useState<boolean>()
     const [sessionDetail, setSessionDetail] = useState<SessionDetail | null>()
     const [callStarted, setCallStarted] = useState<boolean>(false)
-    const [vapiInstance, setVapiInstance] = useState<Vapi | null>(null)
+    const [vapiInstance, setVapiInstance] = useState<any>(null)
     const [currentRole, setCurrentRole] = useState<string | null>('')
     const [messages, setMessages] = useState<messages[]>([])
     const [liveTranscript, setLiveTranscript] = useState<string>()
@@ -111,7 +111,7 @@ const ForeignVoiceAgent = () => {
                     messages: [
                         {
                             role: 'system',
-                            content: `You are a helpful AI language assistant. Speak only in ${langCode.toUpperCase()}. Adapt your language complexity to a ${level} learner.`,
+                            content: `You are a helpful AI language assistant. Speak only in ${langCode.toUpperCase()}. Adapt your language complexity to a ${level} learner. Start the conversation by greeting the user.`,
                         },
                     ],
                 },
