@@ -70,7 +70,7 @@ const LanguageVoiceAgent = () => {
         try {
             setLoading(true)
 
-            const vapi = new Vapi('ffe4398e-6933-40ba-99c8-f43a79116b87');
+            const vapi = new Vapi(process.env.VAPI_API_KEY);
             setVapiInstance(vapi)
 
             const VapiAgentConfig = {
