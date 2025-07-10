@@ -76,7 +76,7 @@ const ForeignVoiceAgent = () => {
         try {
             setLoading(true);
 
-            const vapi = new Vapi(process.env.VAPI_API_KEY);
+            const vapi = new Vapi('161eae17-df00-4f7c-b3a8-a432e2f198fb');
             setVapiInstance(vapi);
 
             if (!sessionDetail) {
