@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { FloatingDock } from "@/components/ui/floating-dock";
+import {FloatingDock, FloatingDockMobile} from "@/components/ui/floating-dock";
 import {toast} from "sonner";
 import {
     IconBrandGithub,
@@ -106,21 +106,23 @@ import {SessionRecord} from "@/app/estimations/page";
      });
      }
      return (
-         <div className='flex items-center mx-4'>
+         <div className='flex items-center mx-4 gap-2 justify-between w-full'>
              <div className='flex items-center justify-center'>
-                 <Image className='w-[120px] h-[100px]  ' width={140} height={90} src={Lingo} alt="logoimage"/>
-            </div>
-            <div className="flex items-center justify-center h-[60px] mt-4 w-full">
-                <FloatingDock
-                    mobileClassName="translate-y-20" // only for demo, remove for production
-                    items={links.filter(Boolean)}
-                />
-            </div>
+                 <Image className='w-[90px] h-[80px] sm:w-[120px] sm:h-[100px]  ' width={140} height={90} src={Lingo} alt="logoimage"/>
+             </div>
+             <div className=" flex   items-center justify-center h-[60px] mt-4 w-full">
+                 <FloatingDock
 
-            <ModeToggle/>
-        </div>
+                     // only for demo, remove for production
+                     items={links.filter(Boolean)}
+                 />
+             </div>
 
-    );
+
+             <ModeToggle/>
+         </div>
+
+     );
  }
 
 export default Navbar

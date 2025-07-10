@@ -109,7 +109,7 @@ Here are the questions to ask:
 3. Do you enjoy this language’s culture, music, or movies?
 4. How do you prefer to learn? (e.g. watching videos, listening to audio, doing exercises, reading)
 5. What is your current level in this language?
-6. Would you like to receive reminders or progress tracking?
+
 
  Once all the questions are answered, tell the user:
 "Thank you! I have everything I need. For  your study plan to begin beeing generated  just disconnect the call!. Hang tight! "

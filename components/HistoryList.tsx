@@ -15,7 +15,7 @@ const HistoryList = () => {
     useEffect(() => {
         if (user) {
             getHistoryList()
-            console.log('sgagasags')
+
         }
 
     }, [user])
@@ -43,7 +43,7 @@ const HistoryList = () => {
     return user && !loading ? (
         <div className='mt-10 w-[66%] '>
             {historyList.length === 0 ? <div className='flex items-center flex-col p-7 border-dashed rounded-xl justify-center gap-5'>
-                <img src='https://i.pinimg.com/736x/23/ff/99/23ff9974ade813c4ae827d0253d8c4d0.jpg' alt='med-assistant' className='rounded-xl' width={200} height={200}/>
+                <img src='https://img.freepik.com/premium-vector/vector-design-multilingual-aid-icon-style_822882-48437.jpg' alt='med-assistant' className='rounded-full' width={200} height={200}/>
                 <h2 className='font-semibold text-xl'>Нет недавних бесед</h2>
                 <p className='text-center text-sm text-gray-500'>Вы пока еще не спрашивали вопросы и не вели беседы. Нажмите на кнопку начать диалог если хотите составить языковой план или выберите нужный язык для практичного разговора с нашим AI</p>
 

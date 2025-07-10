@@ -64,8 +64,12 @@ const Page = () => {
 
     return (
         <div>
-            <div>
+            <div className='flex items-center justify-between w-full '>
+
                 <Navbar/>
+            </div>
+            <div>
+
             </div>
             <div className="h-[60rem] flex flex-col justify-center  items-center px-4">
                 <h2 className="mb-10 sm:mb-20 text-xl text-center sm:text-5xl dark:text-white text-black">

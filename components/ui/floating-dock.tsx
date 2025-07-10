@@ -10,25 +10,33 @@ import {
 } from "motion/react";
 
 import { useRef, useState } from "react";
-
 export const FloatingDock = ({
-  items,
-  desktopClassName,
-  mobileClassName,
-}: {
+                               items,
+                               className,
+                             }: {
   items: { title: string; icon: React.ReactNode; href: string }[];
-  desktopClassName?: string;
-  mobileClassName?: string;
+  className?: string;
 }) => {
+  const mouseX = useMotionValue(Infinity);
+
   return (
-    <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
-    </>
+      <motion.div
+          onMouseMove={(e) => mouseX.set(e.pageX)}
+          onMouseLeave={() => mouseX.set(Infinity)}
+          className={cn(
+              "flex flex-wrap  justify-center gap-4 rounded-2xl bg-gray-50 px-4 py-2 dark:bg-neutral-900",
+              "w-full max-w-md mx-auto",
+              className
+          )}
+      >
+        {items.map((item) => (
+            <IconContainer key={item.title} {...item} mouseX={mouseX} />
+        ))}
+      </motion.div>
   );
 };
 
-const FloatingDockMobile = ({
+export const FloatingDockMobile = ({
   items,
   className,
 }: {
@@ -97,7 +105,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-gray-50 px-4 pb-3 md:flex dark:bg-neutral-900",
+        "mx-auto h-16 items-end gap-4 rounded-2xl bg-gray-50 px-4 pb-3 md:flex dark:bg-neutral-900",
         className,
       )}
     >
